@@ -1,0 +1,51 @@
+---
+title: "Mapping Excel To Your PDF"
+description: "In this section, we will understand how data mapping works in PDF Hippo"
+---
+
+## How PDF Hippo Processes Your Excel Sheet
+
+Once a sheet is uploaded to PDF Hippo, the system processes the Excel sheet and displays the result as a PDF on the PDF viewer on the left pane
+
+![](/images/reference/b51a3be-Screenshot_2023-09-18_at_2.23.12_PM.png) 
+
+The right pane displays a list of the variable input fields. You can mention the default values in the spaces to view how the PDF is going to look - and also to map the default values in the API
+
+Whenever one of these fields is populated, the PDF viewer reflects that value in the PDF.
+
+<Tip>
+    Do enter all the default values and see if it reflects accurately in the PDF viewer - including the alignment.
+</Tip>
+
+**_Handling Default Variables_**
+
+![](/images/reference/326f724-Screenshot_2023-09-18_at_2.35.23_PM.png) 
+
+You can pass values for the default variables. The formatting for these would have to be handled at excel. The default variables take on the same formatting as in the base excel file
+
+**_Handling Table Variables_**
+
+![](/images/reference/46569bb-Screenshot_2023-09-18_at_2.36.46_PM.png) 
+* The tableRange mentions the header range of the table in the excel file. Any edits in the range would have to be done in excel and reuploaded
+* The valueRange mentions the range of the first row of the table in excel. Any edits in the range would have to be done in excel and reuploaded
+* Table Data can be added using a form kind of Interface - as displayed above
+
+**_Handling Image Variables_**
+
+![](/images/reference/6cb6dce-Screenshot_2023-09-18_at_2.39.04_PM.png) 
+* signRange is the range over which the image is displayed. Any edits in the range would have to be done in excel and reuploaded
+* Images need to be passed as URLs
+
+**_Handling EOF Variables_**
+
+PDFHippo autodetects and removes the EOF variable and takes that as the end of file. 
+
+## Reuploading the Template
+
+In case post entering the values, there are certain corrections that need to be done in the base excel file, you can change the raw excel and reupload.
+
+The default values and existing variables are saved - so you will not need to remap it again
+
+## Making the Template Live
+
+Once you have mapped the variables and satisfied with how it looks in the editor - you are ready to publish the template to live and start generating PDFs at scale. Clicking on the publish button will generate the API for you to use

@@ -1,0 +1,102 @@
+---
+title: "Excel To Templates"
+description: "In this section, we're going to take a look at how you can map data from your excel to your template"
+---
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/H_39oWEnxBw?si=8IoT2Z97Le-FHY2t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+### Creating Your Excel Sheet
+
+Prepping your Excel sheet is the most important thing to get your PDF ready. The way you need to think of it is to view Excel as an Editor - a mighty one at that. 
+
+ We will be using the below **Awesome Hippo Invoice**  as an example to walkthrough through the process of creating an excel that is ready to be ingested by PDF Hippo
+
+![](/images/reference/2ed8e9c-Screenshot_2023-09-16_at_1.46.32_PM.png) 
+* The first step is to get the excel ready in the end output format that you want the PDF to be.
+
+<Warning>
+   **Do Ensure!**
+
+   You need to ensure that the excel is PDF compatible
+</Warning>
+* To ensure the excel is PDF friendly and does not overflow on other pages, ensure that when creating the excel you fit it within one vertical page. To do this while designing the Excel, change the view in excel to page layout.  
+   * You can do this by going to View -> Selecting Page Layout in your excel. This ensures the excel is split into page breaks. Once you do that you will get a view like the below
+![](/images/reference/24f2c1d-Screenshot_2023-09-16_at_1.51.14_PM.png) 
+
+Ensure that the excel is contained within the first page break that you see. Once you do this, you are ready to start mapping the variables within the excel.
+
+<Tip>
+   All the formats defined within excel would be transposed into PDF as is
+</Tip>
+
+The beauty of using excel vs. other inbuilt editors to map dynamic variables onto PDF is the fact that in addition to being a tool used by all business users is its powerful editing capabilities. 
+
+All the formatting that you have defined in the excel will remain as is - this includes decimals, conditional formatting, formulaes, datetime, font sizes and colors, cell colors, wraps etc.
+
+### Variables within the excel
+
+Variables that can be mapped onto Excel are of 4 types:
+
+* **_Default_** \- these are single-dimensional variables (number, text, datetime, hyperlinks etc.)
+
+Default variables are declared in the excel using the below format
+
+**var:columnname**
+
+e.g. var:customername
+
+* **_Tables_** \- The second type of variables are tables which are arrays that need to be transposed onto excel before being converted to a PDF
+
+Table variables can be declared in the excel using the below format:
+
+**var:RENDER\_TABLE(cell range of header of the table, arrayname, cellrange of first row of table)**
+
+E.g. var:RENDER\_TABLE(B2:H2, salesorderdata, B3:H3)
+
+In this example the table array name is sales order data, the cell range over which the headers needs to be populated is B2:H2 (total 7 columns) and the first row of the array should be populated from B3 to H3.
+
+<Note>
+   We auto-adjust the PDF based on the number of the rows that needs to be populated on the excel. So you need to worry about that!
+</Note>
+
+* **_Images_** \- The third type of variables are images that are urls that need to be displayed as images before being converted to a PDF
+
+Image variables can be declared in the excel using the below format
+
+**var:RENDER\_IMAGE(imageurl,cell range over which the image should displayed)**
+
+e.g. var:RENDER\_IMAGE(hippoceosignature, B2:E4) 
+
+<Warning>
+   **Be Careful**
+
+   Ensure in the excel ranges that you mention for the images and tables there are no merged cells
+</Warning>
+
+* **End of File** \- The final type of variables are the end of file variables, which mention where the PDF should end. This is especially useful when we have an image or a table image at the end of the file and are not sure where the file ends. End of File variables work using the below syntax.
+
+**var:eof**
+
+This will always remain the same
+
+### Live Example
+
+Going back to the **Awesome Hippo Invoice**, before we upload the document to PDF Hippo, lets replace the values with variables that would be passed to the excel before we convert it to a PDF. Below would be how the above invoice excel would look once we finish mapping the variables:
+
+![](/images/reference/5285b3f-Screenshot_2023-09-16_at_4.02.30_PM.png) 
+
+As you can see in the above, all the values from the original excel has been replaced by variables and is now ready to be uploaded into the PDF Hippo Webapp to generate the API.
+
+### Uploading Your Excel Sheet
+
+To upload data to your account, simply head over to **Templates > Create Template > Upload Excel Sheet**
+
+**Note**: Make sure you have the Excel sheet created in the format that you'd want the PDF to be in.
+
+![](/images/reference/f3c15c1-image.png)
+
+Once your Excel sheet (this sheet can be either in a **.xls, .xlsx, or .csv** format) gets uploaded, you'll be taken to the PDF editor screen.
+
+In the PDF Editor screen, you will begin mapping the data.
+
+![](/images/reference/7825951-image_1.png)
